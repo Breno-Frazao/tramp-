@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,86 +12,207 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- CABEÇALHO -->
+    <!-- CABEÇALHO -->
 
-<header class="header">
+    <header class="header">
 
-    <a href="#" class="logo" onclick="showHome(); return false;">
-        <span class="logo-icon">⌂</span>
-        <span>Tramp<span>ô</span></span>
-    </a>
+        <a href="#" class="logo" onclick="showHome(); return false;">
+            <span class="logo-icon">⌂</span>
+            <span>Tramp<span>ô</span></span>
+        </a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
-        ☰
-    </button>
-
-    <nav class="nav-links" id="navLinks">
-        <a href="#" onclick="showHome(); return false;">Início</a>
-        <a href="#categorias" onclick="showHome();">Categorias</a>
-        <a href="#sobre">Sobre nós</a>
-        <button class="btn-register" onclick="openEmployeeForm()">
-            + Cadastrar profissional
+        <button class="menu-toggle" id="menuToggle">
+            ☰
         </button>
-    </nav>
 
-</header>
+        <nav class="nav-links" id="navLinks">
+
+            <a href="#" onclick="showHome(); return false;">Início</a>
+
+            <a href="#categorias" onclick="showHome();">Categorias</a>
+
+            <a href="#sobre" onclick="showHome();">Sobre nós</a>
+
+            <button class="btn-register" onclick="openEmployeeForm()">
+                + Cadastrar profissional
+            </button>
+
+        </nav>
+
+    </header>
 
 
-<!-- CONTEÚDO PRINCIPAL -->
+    <main>
 
-<main>
+        <!-- TELA INICIAL -->
 
-    <!-- TELA INICIAL -->
+        <section id="homeView">
 
-    <section id="homeView">
+            <section class="hero">
 
-        <!-- BANNER -->
+                <div class="hero-content">
 
-        <section class="hero">
+                    <span class="hero-label">
+                        TRAMPÔ • SERVIÇOS E PROFISSIONAIS
+                    </span>
 
-            <div class="hero-content">
+                    <h1>
+                        Precisa de um serviço?<br>
+                        <span>A gente encontra.</span>
+                    </h1>
 
-                <span class="hero-label">TRAMPÔ • SERVIÇOS E PROFISSIONAIS</span>
+                    <p>
+                        Encontre profissionais qualificados para facilitar
+                        seu dia a dia. Compare avaliações e entre em contato.
+                    </p>
 
-                <h1>
-                    Precisa de um serviço?<br>
-                    <span>A gente encontra.</span>
-                </h1>
+                    <form id="searchForm" class="search-box">
 
-                <p>
-                    Encontre profissionais qualificados para facilitar seu dia a dia.
-                    Compare avaliações e entre em contato.
+                        <span>⌕</span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="O que você está procurando?"
+                        >
+
+                        <button type="submit">Buscar</button>
+
+                    </form>
+
+                </div>
+
+                <div class="hero-card">
+
+                    <span class="hero-check">✓</span>
+
+                    <h3>Encontre quem resolve.</h3>
+
+                    <p>
+                        Serviços com praticidade e confiança.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROFISSIONAIS EM DESTAQUE -->
+
+            <section class="section container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-label">
+                            CONHEÇA NOSSOS PROFISSIONAIS
+                        </span>
+
+                        <h2>Profissionais em destaque</h2>
+
+                        <p>Conheça alguns dos profissionais cadastrados.</p>
+                    </div>
+
+                    <button class="btn-outline" onclick="renderAllEmployees()">
+                        Ver todos →
+                    </button>
+
+                </div>
+
+                <div class="employee-grid" id="featuredGrid"></div>
+
+                <p class="empty-message" id="featuredEmpty" hidden>
+                    Ainda não há profissionais cadastrados.
                 </p>
 
-                <form id="searchForm" class="search-box">
+            </section>
 
-                    <span>⌕</span>
+
+            <!-- CATEGORIAS -->
+
+            <section class="section container" id="categorias">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-label">
+                            ENCONTRE O QUE PRECISA
+                        </span>
+
+                        <h2>Explore por categoria</h2>
+
+                        <p>Escolha a área do serviço que está procurando.</p>
+                    </div>
+
+                </div>
+
+                <div class="category-grid" id="categoryGrid"></div>
+
+            </section>
+
+
+            <!-- SOBRE -->
+
+            <section class="about-section container" id="sobre">
+
+                <div>
+
+                    <span class="section-label">SOBRE O TRAMPÔ</span>
+
+                    <h2>Conectando pessoas a bons profissionais.</h2>
+
+                    <p>
+                        Nosso objetivo é facilitar a busca por serviços,
+                        aproximando clientes e profissionais de diferentes áreas.
+                    </p>
+
+                </div>
+
+                <div class="about-symbol">✓</div>
+
+            </section>
+
+        </section>
+
+
+        <!-- TELA DE CATEGORIA -->
+
+        <section id="categoryView" hidden>
+
+            <div class="page-top container">
+
+                <button class="back-button" onclick="showHome()">
+                    ← Voltar para o início
+                </button>
+
+                <span class="section-label">PROFISSIONAIS DISPONÍVEIS</span>
+
+                <h1 id="categoryTitle">Categoria</h1>
+
+                <p id="categorySubtitle"></p>
+
+                <div class="list-search">
 
                     <input
                         type="text"
-                        id="searchInput"
-                        placeholder="O que você está procurando?"
+                        id="categorySearch"
+                        placeholder="Pesquisar profissional..."
                     >
 
-                    <button type="submit">Buscar</button>
+                </div>
 
-                </form>
+                <p id="categoryCount" class="result-count"></p>
 
-            </div>
+                <div class="employee-grid" id="categoryEmployees"></div>
 
-            <div class="hero-card">
-
-                <span class="hero-check">✓</span>
-
-                <h3>Encontre quem resolve.</h3>
-
-                <p>
-                    Serviços com praticidade e confiança.
+                <p class="empty-message" id="categoryEmpty" hidden>
+                    Nenhum profissional encontrado nesta categoria.
                 </p>
 
             </div>
@@ -97,322 +220,568 @@
         </section>
 
 
-        <!-- DESTAQUES -->
+        <!-- TODOS OS PROFISSIONAIS -->
 
-        <section class="section container">
+        <section id="allView" hidden>
 
-            <div class="section-heading">
+            <div class="page-top container">
 
-                <div>
-                    <span class="section-label">CONHEÇA NOSSOS PROFISSIONAIS</span>
-
-                    <h2>Profissionais em destaque</h2>
-
-                    <p>Conheça alguns dos profissionais cadastrados.</p>
-                </div>
-
-                <button class="btn-outline" onclick="renderAllEmployees()">
-                    Ver todos →
+                <button class="back-button" onclick="showHome()">
+                    ← Voltar para o início
                 </button>
 
+                <span class="section-label">NOSSA COMUNIDADE</span>
+
+                <h1>Todos os profissionais</h1>
+
+                <p>Encontre o profissional ideal para seu serviço.</p>
+
+                <div class="list-search">
+
+                    <input
+                        type="text"
+                        id="allSearch"
+                        placeholder="Pesquisar por nome, profissão ou categoria..."
+                    >
+
+                </div>
+
+                <p id="allCount" class="result-count"></p>
+
+                <div class="employee-grid" id="allEmployees"></div>
+
+                <p class="empty-message" id="allEmpty" hidden>
+                    Nenhum profissional encontrado.
+                </p>
+
             </div>
-
-            <div class="employee-grid" id="featuredGrid"></div>
-
-            <p class="empty-message" id="featuredEmpty" hidden>
-                Ainda não há profissionais cadastrados.
-            </p>
 
         </section>
 
 
-        <!-- CATEGORIAS -->
+        <!-- NOVA TELA DE CADASTRO E PLANOS -->
 
-        <section class="section container" id="categorias">
+        <section id="registrationView" hidden>
 
-            <div class="section-heading">
+            <div class="dashboard">
 
-                <div>
-                    <span class="section-label">ENCONTRE O QUE PRECISA</span>
+                <!-- MENU LATERAL -->
 
-                    <h2>Explore por categoria</h2>
+                <aside class="dashboard-sidebar">
 
-                    <p>Escolha a área do serviço que está procurando.</p>
+                    <div class="sidebar-profile">
+
+                        <div class="profile-icon">👤</div>
+
+                        <h3>Área do profissional</h3>
+
+                        <p>Gerencie seu cadastro</p>
+
+                    </div>
+
+                    <nav class="sidebar-menu">
+
+                        <a href="#cadastro-area"
+                           class="active"
+                           onclick="scrollDashboard('cadastro-area'); return false;">
+                            <span>👤</span>
+                            Meu perfil
+                        </a>
+
+                        <a href="#cadastro-area"
+                           onclick="scrollDashboard('cadastro-area'); return false;">
+                            <span>📝</span>
+                            Cadastro
+                        </a>
+
+                        <a href="#planos-area"
+                           onclick="scrollDashboard('planos-area'); return false;">
+                            <span>⭐</span>
+                            Planos
+                        </a>
+
+                        <a href="#avaliacoes-area"
+                           onclick="scrollDashboard('avaliacoes-area'); return false;">
+                            <span>☆</span>
+                            Avaliações
+                        </a>
+
+                        <a href="#suporte-area"
+                           onclick="scrollDashboard('suporte-area'); return false;">
+                            <span>✉</span>
+                            Mensagens
+                        </a>
+
+                        <a href="#suporte-area"
+                           onclick="scrollDashboard('suporte-area'); return false;">
+                            <span>ⓘ</span>
+                            Suporte
+                        </a>
+
+                    </nav>
+
+                    <div class="sidebar-help" id="suporte-area">
+
+                        <span class="help-icon">♧</span>
+
+                        <h3>Precisa de ajuda?</h3>
+
+                        <p>
+                            Nossa equipe está pronta para te auxiliar.
+                        </p>
+
+                        <a href="mailto:contato@trampo.com.br">
+                            Falar com suporte
+                        </a>
+
+                    </div>
+
+                    <button class="sidebar-back" onclick="showHome()">
+                        ← Voltar ao início
+                    </button>
+
+                </aside>
+
+
+                <!-- CONTEÚDO DO PAINEL -->
+
+                <div class="dashboard-content">
+
+                    <!-- BANNER -->
+
+                    <div class="dashboard-banner">
+
+                        <div class="banner-icon">🚀</div>
+
+                        <div>
+                            <h2>Faça parte do Trampô!</h2>
+
+                            <p>
+                                Cadastre seu perfil profissional, conquiste
+                                clientes e aumente sua visibilidade.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- CADASTRO -->
+
+                    <section class="dashboard-section" id="cadastro-area">
+
+                        <div class="dashboard-title">
+
+                            <span class="section-label">
+                                SEU PERFIL PROFISSIONAL
+                            </span>
+
+                            <h2>Cadastre seus dados</h2>
+
+                            <p>
+                                Preencha as informações abaixo para aparecer
+                                na plataforma.
+                            </p>
+
+                        </div>
+
+
+                        <div class="registration-card">
+
+                            <form id="employeeForm">
+
+                                <div class="form-fields">
+
+                                    <div class="form-field">
+
+                                        <label for="employeeName">
+                                            Nome completo
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="employeeName"
+                                            name="name"
+                                            placeholder="Digite seu nome"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-field">
+
+                                        <label for="employeeJob">
+                                            Profissão / Serviço
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="employeeJob"
+                                            name="job"
+                                            placeholder="Ex: Diarista, Pedreiro..."
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-field">
+
+                                        <label for="employeeCategory">
+                                            Categoria
+                                        </label>
+
+                                        <select
+                                            id="employeeCategory"
+                                            name="category"
+                                            required
+                                        >
+                                            <option value="">
+                                                Selecione uma categoria
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-field">
+
+                                        <label for="employeePrice">
+                                            Preço cobrado (R$)
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="employeePrice"
+                                            name="price"
+                                            min="0"
+                                            step="0.01"
+                                            placeholder="Ex: 80"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-field">
+
+                                        <label for="employeePriceUnit">
+                                            Forma de cobrança
+                                        </label>
+
+                                        <select
+                                            id="employeePriceUnit"
+                                            name="priceUnit"
+                                            required
+                                        >
+                                            <option value="hora">Por hora</option>
+                                            <option value="dia">Por dia</option>
+                                            <option value="serviço">Por serviço</option>
+                                            <option value="visita">Por visita</option>
+                                            <option value="m²">Por m²</option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-field">
+
+                                        <label for="employeePhone">
+                                            Telefone / WhatsApp
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            id="employeePhone"
+                                            name="phone"
+                                            placeholder="(19) 99999-9999"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-field">
+
+                                        <label for="employeeEmail">
+                                            E-mail
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            id="employeeEmail"
+                                            name="email"
+                                            placeholder="seuemail@email.com"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-field">
+
+                                        <label for="employeeSocial">
+                                            Instagram ou outra rede social
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="employeeSocial"
+                                            name="social"
+                                            placeholder="@seuperfil ou link"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- FOTO -->
+
+                                <div class="photo-field">
+
+                                    <label for="employeePhoto">
+                                        Foto do profissional
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        id="employeePhoto"
+                                        name="photo"
+                                        accept="image/*"
+                                        required
+                                    >
+
+                                    <div class="photo-preview" id="photoPreview">
+                                        <span>📷</span>
+                                        <p>A prévia da foto aparecerá aqui.</p>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-notice">
+                                    <span>ⓘ</span>
+                                    Confira todos os dados antes de cadastrar.
+                                </div>
+
+
+                                <button type="submit" class="btn-primary submit-button">
+                                    Cadastrar profissional
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- PLANOS -->
+
+                    <section class="dashboard-section" id="planos-area">
+
+                        <div class="dashboard-title">
+
+                            <span class="section-label">
+                                PLANOS DO TRAMPÔ
+                            </span>
+
+                            <h2>Escolha o plano ideal para você</h2>
+
+                            <p>
+                                Aumente sua visibilidade e conquiste ainda mais clientes.
+                            </p>
+
+                        </div>
+
+
+                        <div class="plans-grid">
+
+                            <!-- PLANO BÁSICO -->
+
+                            <div class="plan-card">
+
+                                <h3>Plano Básico</h3>
+
+                                <p class="plan-description">
+                                    Ideal para quem está começando
+                                </p>
+
+                                <div class="plan-price">
+                                    <span>R$</span>
+                                    29,90
+                                    <small>/mês</small>
+                                </div>
+
+                                <ul class="plan-benefits">
+
+                                    <li>✓ Cadastro de perfil profissional</li>
+
+                                    <li>✓ Foto e descrição dos serviços</li>
+
+                                    <li>✓ Exibição da especialidade</li>
+
+                                    <li>✓ Avaliações dos clientes</li>
+
+                                </ul>
+
+                                <button
+                                    class="plan-button"
+                                    onclick="selectPlan('Plano Básico', 29.90)"
+                                >
+                                    Assinar Plano Básico
+                                </button>
+
+                            </div>
+
+
+                            <!-- PLANO DESTAQUE -->
+
+                            <div class="plan-card featured-plan">
+
+                                <div class="popular-label">
+                                    Mais escolhido ⭐
+                                </div>
+
+                                <h3>Plano Destaque</h3>
+
+                                <p class="plan-description">
+                                    Destaque ainda mais o seu trabalho
+                                </p>
+
+                                <div class="plan-price">
+                                    <span>R$</span>
+                                    49,90
+                                    <small>/mês</small>
+                                </div>
+
+                                <ul class="plan-benefits">
+
+                                    <li>✓ Todos os benefícios do Plano Básico</li>
+
+                                    <li>✓ Maior visibilidade nas buscas</li>
+
+                                    <li>✓ Destaque na página inicial</li>
+
+                                    <li>✓ Prioridade na divulgação</li>
+
+                                </ul>
+
+                                <button
+                                    class="plan-button highlight-button"
+                                    onclick="selectPlan('Plano Destaque', 49.90)"
+                                >
+                                    Assinar Plano Destaque
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- AVALIAÇÕES -->
+
+                    <section class="dashboard-section" id="avaliacoes-area">
+
+                        <div class="growth-card">
+
+                            <div class="growth-icon">📈</div>
+
+                            <div>
+                                <h3>Seu crescimento no Trampô</h3>
+                                <p>
+                                    Mais visibilidade, mais clientes,
+                                    mais oportunidades!
+                                </p>
+                            </div>
+
+                            <div class="security-info">
+                                <span>🛡️</span>
+                                <div>
+                                    <strong>Pagamento seguro</strong>
+                                    <p>Seus dados estão protegidos</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+
                 </div>
 
             </div>
 
-            <div class="category-grid" id="categoryGrid"></div>
-
         </section>
 
-
-        <!-- SOBRE -->
-
-        <section class="about-section container" id="sobre">
-
-            <div>
-                <span class="section-label">SOBRE O TRAMPÔ</span>
-                <h2>Conectando pessoas a bons profissionais.</h2>
-                <p>
-                    Nosso objetivo é facilitar a busca por serviços,
-                    aproximando clientes e profissionais de diferentes áreas.
-                </p>
-            </div>
-
-            <div class="about-symbol">✓</div>
-
-        </section>
-
-    </section>
+    </main>
 
 
-    <!-- TELA DE CATEGORIA -->
+    <!-- PERFIL DO PROFISSIONAL -->
 
-    <section id="categoryView" hidden>
+    <dialog id="detailDialog" class="modal detail-modal">
 
-        <div class="page-top container">
-
-            <button class="back-button" onclick="showHome()">
-                ← Voltar para o início
-            </button>
-
-            <span class="section-label">PROFISSIONAIS DISPONÍVEIS</span>
-
-            <h1 id="categoryTitle">Categoria</h1>
-
-            <p id="categorySubtitle"></p>
-
-            <div class="list-search">
-                <input
-                    type="text"
-                    id="categorySearch"
-                    placeholder="Pesquisar profissional..."
-                >
-            </div>
-
-            <p id="categoryCount" class="result-count"></p>
-
-            <div class="employee-grid" id="categoryEmployees"></div>
-
-            <p class="empty-message" id="categoryEmpty" hidden>
-                Nenhum profissional encontrado nesta categoria.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- TODOS OS PROFISSIONAIS -->
-
-    <section id="allView" hidden>
-
-        <div class="page-top container">
-
-            <button class="back-button" onclick="showHome()">
-                ← Voltar para o início
-            </button>
-
-            <span class="section-label">NOSSA COMUNIDADE</span>
-
-            <h1>Todos os profissionais</h1>
-
-            <p>Encontre o profissional ideal para seu serviço.</p>
-
-            <div class="list-search">
-                <input
-                    type="text"
-                    id="allSearch"
-                    placeholder="Pesquisar por nome, profissão ou categoria..."
-                >
-            </div>
-
-            <p id="allCount" class="result-count"></p>
-
-            <div class="employee-grid" id="allEmployees"></div>
-
-            <p class="empty-message" id="allEmpty" hidden>
-                Nenhum profissional encontrado.
-            </p>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- CADASTRO DE PROFISSIONAL -->
-
-<dialog id="employeeDialog" class="modal">
-
-    <div class="modal-header">
-
-        <div>
-            <span class="section-label">FAÇA PARTE DO TRAMPÔ</span>
-            <h2>Cadastrar profissional</h2>
-        </div>
-
-        <button class="close-button" onclick="closeEmployeeForm()">×</button>
-
-    </div>
-
-    <form id="employeeForm">
-
-        <label for="employeeName">Nome completo</label>
-
-        <input
-            type="text"
-            id="employeeName"
-            name="name"
-            placeholder="Digite seu nome"
-            required
-        >
-
-        <label for="employeeJob">Profissão / Serviço</label>
-
-        <input
-            type="text"
-            id="employeeJob"
-            name="job"
-            placeholder="Ex: Diarista, Pedreiro..."
-            required
-        >
-
-        <label for="employeeCategory">Categoria</label>
-
-        <select id="employeeCategory" name="category" required>
-            <option value="">Selecione uma categoria</option>
-        </select>
-
-        <label for="employeePrice">Preço cobrado (R$)</label>
-
-        <input
-            type="number"
-            id="employeePrice"
-            name="price"
-            min="0"
-            step="0.01"
-            placeholder="Ex: 20"
-            required
-        >
-
-        <label for="employeePriceUnit">Forma de cobrança</label>
-
-        <select id="employeePriceUnit" name="priceUnit" required>
-            <option value="hora">Por hora</option>
-            <option value="dia">Por dia</option>
-            <option value="serviço">Por serviço</option>
-            <option value="visita">Por visita</option>
-            <option value="m²">Por m²</option>
-        </select>
-
-        <label for="employeePhoto">Foto do profissional</label>
-
-        <input
-            type="file"
-            id="employeePhoto"
-            name="photo"
-            accept="image/*"
-            required
-        >
-
-        <div class="photo-preview" id="photoPreview">
-            A prévia da foto aparecerá aqui.
-        </div>
-
-        <label for="employeePhone">Telefone / WhatsApp</label>
-
-        <input
-            type="tel"
-            id="employeePhone"
-            name="phone"
-            placeholder="(19) 99999-9999"
-        >
-
-        <label for="employeeEmail">E-mail</label>
-
-        <input
-            type="email"
-            id="employeeEmail"
-            name="email"
-            placeholder="seuemail@email.com"
-        >
-
-        <label for="employeeSocial">Instagram ou outra rede social</label>
-
-        <input
-            type="text"
-            id="employeeSocial"
-            name="social"
-            placeholder="@seuperfil"
-        >
-
-        <button type="submit" class="btn-primary submit-button">
-            Cadastrar profissional
+        <button class="close-button detail-close" onclick="closeDetail()">
+            ×
         </button>
 
-    </form>
+        <div id="detailContent"></div>
 
-</dialog>
-
-
-<!-- PERFIL DO PROFISSIONAL -->
-
-<dialog id="detailDialog" class="modal detail-modal">
-
-    <button class="close-button detail-close" onclick="closeDetail()">
-        ×
-    </button>
-
-    <div id="detailContent"></div>
-
-</dialog>
+    </dialog>
 
 
-<!-- RODAPÉ -->
+    <!-- RODAPÉ -->
 
-<footer class="footer">
+    <footer class="footer">
 
-    <div class="container footer-content">
+        <div class="container footer-content">
 
-        <div>
-            <a href="#" class="logo footer-logo" onclick="showHome(); return false;">
-                <span class="logo-icon">⌂</span>
-                <span>Tramp<span>ô</span></span>
-            </a>
+            <div>
 
-            <p>Conectando você aos melhores profissionais.</p>
+                <a href="#" class="logo footer-logo" onclick="showHome(); return false;">
+                    <span class="logo-icon">⌂</span>
+                    <span>Tramp<span>ô</span></span>
+                </a>
+
+                <p>Conectando você aos melhores profissionais.</p>
+
+            </div>
+
+            <div>
+
+                <h3>Links</h3>
+
+                <a href="#" onclick="showHome(); return false;">Início</a>
+
+                <a href="#categorias" onclick="showHome();">Categorias</a>
+
+                <a href="#sobre" onclick="showHome();">Sobre nós</a>
+
+            </div>
+
+            <div>
+
+                <h3>Contato</h3>
+
+                <p>contato@trampo.com.br</p>
+
+            </div>
+
         </div>
 
-        <div>
-            <h3>Links</h3>
-            <a href="#" onclick="showHome(); return false;">Início</a>
-            <a href="#categorias" onclick="showHome();">Categorias</a>
-            <a href="#sobre">Sobre nós</a>
+        <div class="copyright">
+            © 2026 Trampô. Todos os direitos reservados.
         </div>
 
-        <div>
-            <h3>Contato</h3>
-            <p>contato@trampo.com.br</p>
-        </div>
-
-    </div>
-
-    <div class="copyright">
-        © 2026 Trampô. Todos os direitos reservados.
-    </div>
-
-</footer>
+    </footer>
 
 
-<!-- MENSAGEM -->
+    <!-- NOTIFICAÇÕES -->
 
-<div id="toast" class="toast"></div>
+    <div id="toast" class="toast"></div>
 
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

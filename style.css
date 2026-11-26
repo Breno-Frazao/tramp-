@@ -1,6 +1,5 @@
-/* =================================
-   CONFIGURAÇÕES GERAIS
-================================= */
+
+/* CONFIGURAÇÕES GERAIS */
 
 * {
     margin: 0;
@@ -49,9 +48,7 @@ button {
 }
 
 
-/* =================================
-   CABEÇALHO
-================================= */
+/* CABEÇALHO */
 
 .header {
     width: 100%;
@@ -129,9 +126,7 @@ button {
 }
 
 
-/* =================================
-   BANNER
-================================= */
+/* BANNER INICIAL */
 
 .hero {
     min-height: 350px;
@@ -245,9 +240,7 @@ button {
 }
 
 
-/* =================================
-   SEÇÕES
-================================= */
+/* SEÇÕES */
 
 .section {
     padding-top: 65px;
@@ -289,9 +282,7 @@ button {
 }
 
 
-/* =================================
-   CARDS DOS PROFISSIONAIS
-================================= */
+/* CARDS DOS PROFISSIONAIS */
 
 .employee-grid {
     display: grid;
@@ -401,9 +392,7 @@ button {
 }
 
 
-/* =================================
-   CATEGORIAS
-================================= */
+/* CATEGORIAS */
 
 .category-grid {
     display: grid;
@@ -456,9 +445,7 @@ button {
 }
 
 
-/* =================================
-   SOBRE
-================================= */
+/* SOBRE */
 
 .about-section {
     margin-top: 65px;
@@ -497,9 +484,7 @@ button {
 }
 
 
-/* =================================
-   PÁGINAS INTERNAS
-================================= */
+/* PÁGINAS INTERNAS */
 
 .page-top {
     padding-top: 55px;
@@ -552,9 +537,445 @@ button {
 }
 
 
-/* =================================
-   MODAIS
-================================= */
+/* NOVO PAINEL */
+
+.dashboard {
+    display: flex;
+    min-height: 850px;
+    background: #f8f8f6;
+}
+
+.dashboard-sidebar {
+    width: 275px;
+    flex-shrink: 0;
+    background: #fff;
+    border-right: 1px solid var(--border);
+    padding: 35px 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-profile {
+    text-align: center;
+    padding: 10px 5px 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.profile-icon {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: #e0f4e5;
+    color: var(--green);
+    display: grid;
+    place-items: center;
+    font-size: 35px;
+    margin: 0 auto 15px;
+}
+
+.sidebar-profile h3 {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.sidebar-profile p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 25px 0;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px;
+    border-radius: 10px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.sidebar-menu a span {
+    font-size: 19px;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background: #ddf3e3;
+    color: var(--green-dark);
+}
+
+.sidebar-help {
+    background: #e6f6e9;
+    padding: 22px 15px;
+    text-align: center;
+    border-radius: 14px;
+    margin-top: auto;
+}
+
+.help-icon {
+    font-size: 28px;
+    color: var(--green);
+}
+
+.sidebar-help h3 {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.sidebar-help p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.sidebar-help a {
+    display: block;
+    background: var(--green-dark);
+    color: white;
+    padding: 12px 8px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.sidebar-back {
+    background: transparent;
+    border: none;
+    color: var(--green);
+    font-weight: 700;
+    margin-top: 22px;
+    padding: 12px;
+    text-align: left;
+}
+
+.dashboard-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+.dashboard-banner {
+    min-height: 150px;
+    padding: 30px;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 95% 100%, #176b4b 0, transparent 25%),
+        var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    color: white;
+    margin-bottom: 35px;
+}
+
+.banner-icon {
+    font-size: 55px;
+    padding-right: 25px;
+    border-right: 2px solid var(--green-light);
+}
+
+.dashboard-banner h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.dashboard-banner p {
+    color: #d0ded5;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.dashboard-section {
+    margin-bottom: 45px;
+    scroll-margin-top: 25px;
+}
+
+.dashboard-title {
+    margin-bottom: 20px;
+}
+
+.dashboard-title h2 {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.dashboard-title p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.registration-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 28px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.03);
+}
+
+.form-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field label,
+.photo-field label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-field input,
+.form-field select,
+.photo-field input {
+    width: 100%;
+    min-width: 0;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    background: white;
+    font-size: 14px;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+    border-color: var(--green);
+}
+
+.photo-field {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.photo-preview {
+    min-height: 130px;
+    padding: 15px;
+    border: 1px dashed #b9cbbd;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--muted);
+    font-size: 13px;
+    gap: 8px;
+}
+
+.photo-preview span {
+    font-size: 28px;
+}
+
+.photo-preview img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.form-notice {
+    margin-top: 20px;
+    padding: 13px;
+    background: #edf7ef;
+    border-radius: 8px;
+    color: var(--green);
+    font-size: 13px;
+}
+
+.btn-primary {
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.btn-primary:hover {
+    background: var(--green-dark);
+}
+
+.submit-button {
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+/* PLANOS */
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.plan-card {
+    position: relative;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card h3 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.plan-description {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.plan-price {
+    font-size: 43px;
+    font-weight: 800;
+    color: var(--green-dark);
+    margin-bottom: 25px;
+    white-space: nowrap;
+}
+
+.plan-price span {
+    font-size: 24px;
+}
+
+.plan-price small {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.plan-benefits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    margin-bottom: 30px;
+    flex: 1;
+}
+
+.plan-benefits li {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.plan-benefits li::first-letter {
+    color: var(--green);
+    font-weight: 800;
+}
+
+.plan-button {
+    width: 100%;
+    padding: 15px;
+    background: white;
+    border: 2px solid var(--green);
+    border-radius: 30px;
+    color: var(--green-dark);
+    font-size: 14px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.plan-button:hover {
+    background: var(--green);
+    color: white;
+}
+
+.featured-plan {
+    background: #f0faf2;
+    border: 2px solid var(--green);
+}
+
+.popular-label {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: var(--green);
+    color: white;
+    padding: 9px 18px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.highlight-button {
+    background: var(--green);
+    color: white;
+}
+
+.highlight-button:hover {
+    background: var(--green-dark);
+}
+
+.growth-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.growth-icon {
+    font-size: 40px;
+}
+
+.growth-card h3 {
+    margin-bottom: 8px;
+}
+
+.growth-card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.security-info {
+    margin-left: auto;
+    padding-left: 25px;
+    border-left: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 190px;
+}
+
+.security-info > span {
+    font-size: 30px;
+}
+
+.security-info strong {
+    font-size: 13px;
+}
+
+.security-info p {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+
+/* MODAL DE PERFIL */
 
 .modal {
     width: min(520px, 94%);
@@ -574,17 +995,6 @@ button {
     backdrop-filter: blur(3px);
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 25px;
-}
-
-.modal-header h2 {
-    font-size: 25px;
-}
-
 .close-button {
     border: none;
     background: #edf2ee;
@@ -594,74 +1004,6 @@ button {
     font-size: 23px;
     color: var(--green-dark);
 }
-
-#employeeForm {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-
-#employeeForm label {
-    font-size: 13px;
-    font-weight: 700;
-    margin-top: 8px;
-}
-
-#employeeForm input,
-#employeeForm select {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    outline: none;
-    background: white;
-    font-size: 14px;
-}
-
-#employeeForm input:focus,
-#employeeForm select:focus {
-    border-color: var(--green);
-}
-
-.photo-preview {
-    min-height: 90px;
-    display: grid;
-    place-items: center;
-    padding: 10px;
-    border: 1px dashed #b9cbbd;
-    border-radius: 10px;
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.photo-preview img {
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-.btn-primary {
-    background: var(--green);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 15px;
-    font-weight: 700;
-}
-
-.btn-primary:hover {
-    background: var(--green-dark);
-}
-
-.submit-button {
-    margin-top: 18px;
-}
-
-
-/* =================================
-   PERFIL
-================================= */
 
 .detail-modal {
     padding: 0;
@@ -690,7 +1032,6 @@ button {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    object-position: center;
 }
 
 .detail-body {
@@ -722,6 +1063,7 @@ button {
     align-items: center;
     gap: 10px;
     margin-bottom: 25px;
+    flex-wrap: wrap;
 }
 
 .detail-rating .stars {
@@ -793,9 +1135,7 @@ button {
 }
 
 
-/* =================================
-   RODAPÉ
-================================= */
+/* RODAPÉ */
 
 .footer {
     background: var(--green-dark);
@@ -837,9 +1177,7 @@ button {
 }
 
 
-/* =================================
-   NOTIFICAÇÃO
-================================= */
+/* NOTIFICAÇÃO */
 
 .toast {
     position: fixed;
@@ -864,11 +1202,9 @@ button {
 }
 
 
-/* =================================
-   RESPONSIVIDADE
-================================= */
+/* RESPONSIVIDADE */
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
 
     .employee-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -878,11 +1214,78 @@ button {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .hero {
-        padding-left: 7%;
-        padding-right: 7%;
+    .dashboard-sidebar {
+        width: 230px;
     }
 
+    .dashboard-content {
+        padding: 22px;
+    }
+
+    .plan-card {
+        padding: 23px;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .dashboard-sidebar {
+        width: 100%;
+        padding: 18px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-profile {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 12px;
+        padding: 0 0 15px;
+    }
+
+    .profile-icon {
+        width: 50px;
+        height: 50px;
+        margin: 0;
+        font-size: 25px;
+    }
+
+    .sidebar-profile h3 {
+        font-size: 14px;
+    }
+
+    .sidebar-profile p {
+        font-size: 12px;
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 15px 0;
+    }
+
+    .sidebar-menu a {
+        white-space: nowrap;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .sidebar-help {
+        display: none;
+    }
+
+    .sidebar-back {
+        margin-top: 0;
+    }
+
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 700px) {
@@ -1039,6 +1442,60 @@ button {
         height: 270px;
     }
 
+    .dashboard-content {
+        padding: 18px 14px;
+    }
+
+    .dashboard-banner {
+        padding: 22px 17px;
+        gap: 15px;
+    }
+
+    .banner-icon {
+        font-size: 35px;
+        padding-right: 15px;
+    }
+
+    .dashboard-banner h2 {
+        font-size: 18px;
+    }
+
+    .dashboard-banner p {
+        font-size: 12px;
+    }
+
+    .dashboard-title h2 {
+        font-size: 22px;
+    }
+
+    .registration-card {
+        padding: 18px;
+    }
+
+    .form-fields {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .plan-card {
+        padding: 25px 20px;
+    }
+
+    .plan-price {
+        font-size: 38px;
+    }
+
+    .growth-card {
+        flex-wrap: wrap;
+    }
+
+    .security-info {
+        width: 100%;
+        margin: 10px 0 0;
+        padding: 15px 0 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
 }
 
 @media (max-width: 380px) {
@@ -1059,4 +1516,7 @@ button {
         font-size: 30px;
     }
 
+    .plan-price {
+        font-size: 32px;
+    }
 }

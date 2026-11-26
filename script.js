@@ -1,57 +1,59 @@
-// ============================================
-// TRAMPÔ - SISTEMA COMPLETO
-// ============================================
+
+/* ============================================
+   TRAMPÔ - SISTEMA COMPLETO
+============================================ */
 
 
-// ============================================
-// CATEGORIAS
-// ============================================
+/* CATEGORIAS */
 
 const CATEGORIES = [
+
     {
         name: "Gastronomia",
         icon: "🍳",
         description: "Cozinheiros, confeiteiros e alimentação."
     },
+
     {
         name: "Limpeza / Organização",
         icon: "🧹",
         description: "Diaristas, faxineiros e organização."
     },
+
     {
         name: "Reparos / Manutenção",
         icon: "🔧",
         description: "Pedreiros, eletricistas e montadores."
     },
+
     {
         name: "Beleza / Estética",
         icon: "✂️",
         description: "Cabeleireiros e profissionais da beleza."
     },
+
     {
         name: "Eventos",
         icon: "📷",
         description: "Fotógrafos, decoração e eventos."
     },
+
     {
         name: "Cuidados com Animais",
         icon: "🐾",
         description: "Banho, tosa e cuidados com animais."
     },
+
     {
         name: "Aulas e Atividades",
         icon: "🎓",
         description: "Aulas particulares e atividades."
     }
+
 ];
 
 
-// ============================================
-// FOTOS DOS PROFISSIONAIS
-// ============================================
-
-// As três fotos enviadas por você ficam na pasta images.
-// Os nomes precisam ser exatamente iguais aos daqui.
+/* PROFISSIONAIS DE EXEMPLO */
 
 const sampleEmployees = [
 
@@ -130,12 +132,11 @@ const sampleEmployees = [
         photo: "images/pedreiro.jpg"
     }
 
+
 ];
 
 
-// ============================================
-// ELEMENTOS E DADOS
-// ============================================
+/* ELEMENTOS E DADOS */
 
 const $ = id => document.getElementById(id);
 
@@ -145,38 +146,7 @@ let currentEmployeeId = null;
 const STORAGE_KEY = "trampoEmployees";
 
 
-// ============================================
-// IMAGEM RESERVA
-// ============================================
-
-function avatar(name) {
-
-    const initials = String(name || "T")
-        .split(" ")
-        .map(part => part[0])
-        .slice(0, 2)
-        .join("")
-        .toUpperCase();
-
-    const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg"
-        width="500" height="500">
-        <rect width="100%" height="100%" fill="#e4f3e8"/>
-        <text x="50%" y="53%" dominant-baseline="middle"
-        text-anchor="middle" font-size="130"
-        font-family="Arial" font-weight="bold"
-        fill="#176b4b">${initials}</text>
-        </svg>
-    `;
-
-    return "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(svg);
-}
-
-
-// ============================================
-// CARREGAR E SALVAR
-// ============================================
+/* CARREGAR FUNCIONÁRIOS */
 
 function loadEmployees() {
 
@@ -185,12 +155,14 @@ function loadEmployees() {
         const saved = localStorage.getItem(STORAGE_KEY);
 
         if (!saved) {
+
             localStorage.setItem(
                 STORAGE_KEY,
                 JSON.stringify(sampleEmployees)
             );
 
             return [...sampleEmployees];
+
         }
 
         const oldEmployees = JSON.parse(saved);
@@ -199,42 +171,19 @@ function loadEmployees() {
             throw new Error("Dados inválidos");
         }
 
-        // Atualiza os profissionais de exemplo sem apagar
-        // os funcionários cadastrados pelo usuário.
-
-        const updatedEmployees = oldEmployees.map(employee => {
-
-            const updated = sampleEmployees.find(
-                sample => sample.id === employee.id
-            );
-
-            if (updated) {
-                return {
-                    ...updated,
-                    rating: employee.rating ?? updated.rating,
-                    ratings: employee.ratings ?? updated.ratings
-                };
-            }
-
-            return employee;
-
-        });
-
-        // Adiciona os exemplos que eventualmente não existam.
-
         sampleEmployees.forEach(sample => {
 
-            const exists = updatedEmployees.some(
-                employee => employee.id === sample.id
-            );
+            const exists = oldEmployees.some(employee => {
+                return employee.id === sample.id;
+            });
 
             if (!exists) {
-                updatedEmployees.push(sample);
+                oldEmployees.push(sample);
             }
 
         });
 
-        return updatedEmployees;
+        return oldEmployees;
 
     } catch (error) {
 
@@ -249,6 +198,8 @@ function loadEmployees() {
 
 let employees = loadEmployees();
 
+
+/* SALVAR FUNCIONÁRIOS */
 
 function saveEmployees() {
 
@@ -265,7 +216,7 @@ function saveEmployees() {
 
         console.error("Erro ao salvar:", error);
 
-        toast("Não foi possível salvar. A foto pode ser muito grande.");
+        toast("Não foi possível salvar. Verifique o tamanho das fotos.");
 
         return false;
 
@@ -274,9 +225,7 @@ function saveEmployees() {
 }
 
 
-// ============================================
-// FUNÇÕES AUXILIARES
-// ============================================
+/* FUNÇÕES AUXILIARES */
 
 function escapeHTML(value = "") {
 
@@ -335,6 +284,35 @@ function stars(value) {
 }
 
 
+function avatar(name) {
+
+    const initials = String(name || "T")
+        .split(" ")
+        .map(part => part[0])
+        .slice(0, 2)
+        .join("")
+        .toUpperCase();
+
+    const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg"
+        width="500" height="500">
+
+        <rect width="100%" height="100%" fill="#e4f3e8"/>
+
+        <text x="50%" y="53%" dominant-baseline="middle"
+        text-anchor="middle" font-size="130"
+        font-family="Arial" font-weight="bold"
+        fill="#176b4b">${initials}</text>
+
+        </svg>
+    `;
+
+    return "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(svg);
+
+}
+
+
 function setImageFallback(img) {
 
     img.onerror = null;
@@ -344,9 +322,7 @@ function setImageFallback(img) {
 }
 
 
-// ============================================
-// CARTÕES DOS PROFISSIONAIS
-// ============================================
+/* CARTÕES DOS PROFISSIONAIS */
 
 function card(employee) {
 
@@ -356,11 +332,11 @@ function card(employee) {
 
         <article
             class="employee-card"
-            onclick="openDetail('${employee.id}')"
+            onclick="openDetail('${escapeHTML(employee.id)}')"
             tabindex="0"
             role="button"
             aria-label="Ver perfil de ${escapeHTML(employee.name)}"
-            onkeydown="if(event.key==='Enter')openDetail('${employee.id}')"
+            onkeydown="if(event.key==='Enter')openDetail('${escapeHTML(employee.id)}')"
         >
 
             <div class="employee-photo-wrap">
@@ -409,9 +385,7 @@ function card(employee) {
 }
 
 
-// ============================================
-// RENDERIZAR DESTAQUES
-// ============================================
+/* RENDERIZAR INÍCIO */
 
 function renderHome() {
 
@@ -431,9 +405,7 @@ function renderHome() {
 }
 
 
-// ============================================
-// RENDERIZAR CATEGORIAS
-// ============================================
+/* RENDERIZAR CATEGORIAS */
 
 function renderCategories() {
 
@@ -463,9 +435,7 @@ function renderCategories() {
 }
 
 
-// ============================================
-// SELECT DO CADASTRO
-// ============================================
+/* PREENCHER SELECT */
 
 function fillCategorySelect() {
 
@@ -476,7 +446,9 @@ function fillCategorySelect() {
         ${CATEGORIES.map(category => `
 
             <option value="${escapeHTML(category.name)}">
+
                 ${escapeHTML(category.name)}
+
             </option>
 
         `).join("")}
@@ -486,9 +458,7 @@ function fillCategorySelect() {
 }
 
 
-// ============================================
-// NAVEGAÇÃO
-// ============================================
+/* NAVEGAÇÃO ENTRE TELAS */
 
 function hideViews() {
 
@@ -497,6 +467,8 @@ function hideViews() {
     $("categoryView").hidden = true;
 
     $("allView").hidden = true;
+
+    $("registrationView").hidden = true;
 
     $("navLinks").classList.remove("open");
 
@@ -557,9 +529,52 @@ function showCategory(index) {
 }
 
 
-// ============================================
-// PROFISSIONAIS DA CATEGORIA
-// ============================================
+/* ABRIR CADASTRO EM OUTRA TELA */
+
+function openEmployeeForm() {
+
+    hideViews();
+
+    $("registrationView").hidden = false;
+
+    $("employeeForm").reset();
+
+    $("photoPreview").innerHTML = `
+        <span>📷</span>
+        <p>A prévia da foto aparecerá aqui.</p>
+    `;
+
+    history.pushState(
+        { view: "registration" },
+        "",
+        "#cadastro"
+    );
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* NAVEGAÇÃO DO MENU LATERAL */
+
+function scrollDashboard(id) {
+
+    const section = $(id);
+
+    if (!section) return;
+
+    section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+/* PROFISSIONAIS DA CATEGORIA */
 
 function renderCategoryEmployees() {
 
@@ -573,10 +588,8 @@ function renderCategoryEmployees() {
             employee.category === currentCategory;
 
         const matchesSearch = [
-
             employee.name,
             employee.job
-
         ].some(value =>
 
             String(value || "")
@@ -600,9 +613,7 @@ function renderCategoryEmployees() {
 }
 
 
-// ============================================
-// TODOS OS PROFISSIONAIS
-// ============================================
+/* TODOS OS PROFISSIONAIS */
 
 function renderAllEmployees() {
 
@@ -632,11 +643,9 @@ function renderAllList() {
     const list = employees.filter(employee => {
 
         return [
-
             employee.name,
             employee.job,
             employee.category
-
         ].some(value =>
 
             String(value || "")
@@ -658,25 +667,7 @@ function renderAllList() {
 }
 
 
-// ============================================
-// CADASTRO DE PROFISSIONAIS
-// ============================================
-
-function openEmployeeForm() {
-
-    $("employeeDialog").showModal();
-
-}
-
-
-function closeEmployeeForm() {
-
-    $("employeeDialog").close();
-
-}
-
-
-// PRÉVIA DA FOTO
+/* PRÉVIA DA FOTO */
 
 $("employeePhoto").addEventListener("change", event => {
 
@@ -712,6 +703,8 @@ $("employeePhoto").addEventListener("change", event => {
 
             <img src="${reader.result}" alt="Prévia da foto">
 
+            <p>Foto selecionada com sucesso!</p>
+
         `;
 
     };
@@ -721,7 +714,7 @@ $("employeePhoto").addEventListener("change", event => {
 });
 
 
-// SALVAR CADASTRO
+/* CADASTRAR FUNCIONÁRIO */
 
 $("employeeForm").addEventListener("submit", event => {
 
@@ -793,12 +786,12 @@ $("employeeForm").addEventListener("submit", event => {
 
         form.reset();
 
-        $("photoPreview").textContent =
-            "A prévia da foto aparecerá aqui.";
+        $("photoPreview").innerHTML = `
+            <span>📷</span>
+            <p>A prévia da foto aparecerá aqui.</p>
+        `;
 
-        closeEmployeeForm();
-
-        renderHome();
+        showHome();
 
         toast("Profissional cadastrado com sucesso!");
 
@@ -815,9 +808,7 @@ $("employeeForm").addEventListener("submit", event => {
 });
 
 
-// ============================================
-// PERFIL DO PROFISSIONAL
-// ============================================
+/* PERFIL DO PROFISSIONAL */
 
 function openDetail(id) {
 
@@ -844,7 +835,7 @@ function openDetail(id) {
                 <a
                     href="https://wa.me/55${digits}"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                 >
                     ${escapeHTML(employee.phone)} (WhatsApp)
                 </a>
@@ -864,7 +855,9 @@ function openDetail(id) {
                 <b>✉</b>
 
                 <a href="mailto:${escapeHTML(employee.email)}">
+
                     ${escapeHTML(employee.email)}
+
                 </a>
 
             </div>
@@ -875,13 +868,28 @@ function openDetail(id) {
 
     if (employee.social) {
 
+        let socialLink = employee.social;
+
+        if (!socialLink.startsWith("http")) {
+
+            socialLink = "https://www.instagram.com/" +
+                socialLink.replace("@", "");
+
+        }
+
         contacts += `
 
             <div class="contact-item">
 
                 <b>◎</b>
 
-                <span>${escapeHTML(employee.social)}</span>
+                <a
+                    href="${escapeHTML(socialLink)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    ${escapeHTML(employee.social)}
+                </a>
 
             </div>
 
@@ -891,7 +899,9 @@ function openDetail(id) {
 
     if (!contacts) {
 
-        contacts = "<p>Este profissional ainda não informou seus contatos.</p>";
+        contacts = `
+            <p>Este profissional ainda não informou seus contatos.</p>
+        `;
 
     }
 
@@ -911,31 +921,43 @@ function openDetail(id) {
         <div class="detail-body">
 
             <span class="section-label">
+
                 ${escapeHTML(employee.category)}
+
             </span>
 
             <h2>${escapeHTML(employee.name)}</h2>
 
             <p class="detail-job">
+
                 ${escapeHTML(employee.job)}
+
             </p>
 
             <div class="detail-price">
+
                 ${priceLabel(employee)}
+
             </div>
 
             <div class="detail-rating">
 
                 <span class="stars">
+
                     ${stars(employee.rating)}
+
                 </span>
 
                 <strong>
+
                     ${Number(employee.rating || 0).toFixed(1)} / 5
+
                 </strong>
 
                 <small>
+
                     (${employee.ratings || 0} avaliações)
+
                 </small>
 
             </div>
@@ -943,7 +965,9 @@ function openDetail(id) {
             <div class="rate-area">
 
                 <strong>
+
                     Deixe sua avaliação para este profissional:
+
                 </strong>
 
                 <div class="rate-stars">
@@ -989,9 +1013,7 @@ function closeDetail() {
 }
 
 
-// ============================================
-// AVALIAÇÃO POR ESTRELAS
-// ============================================
+/* AVALIAÇÃO POR ESTRELAS */
 
 function rateEmployee(id, score) {
 
@@ -1006,10 +1028,13 @@ function rateEmployee(id, score) {
     const oldCount = Number(employee.ratings || 0);
 
     employee.rating = Number(
+
         (
             (oldRating * oldCount + score) /
             (oldCount + 1)
+
         ).toFixed(1)
+
     );
 
     employee.ratings = oldCount + 1;
@@ -1029,11 +1054,15 @@ function rateEmployee(id, score) {
     renderHome();
 
     if (!$("categoryView").hidden) {
+
         renderCategoryEmployees();
+
     }
 
     if (!$("allView").hidden) {
+
         renderAllList();
+
     }
 
     toast("Obrigado pela avaliação!");
@@ -1041,9 +1070,30 @@ function rateEmployee(id, score) {
 }
 
 
-// ============================================
-// PESQUISA
-// ============================================
+/* SELEÇÃO DOS PLANOS */
+
+function selectPlan(name, price) {
+
+    const confirmacao = confirm(
+
+        `Você escolheu o ${name}.\n\n` +
+        `Valor: R$ ${price.toFixed(2).replace(".", ",")} por mês.\n\n` +
+        `Deseja continuar?`
+
+    );
+
+    if (confirmacao) {
+
+        toast(
+            "Plano selecionado! O pagamento ainda precisa ser configurado."
+        );
+
+    }
+
+}
+
+
+/* PESQUISA */
 
 $("searchForm").addEventListener("submit", event => {
 
@@ -1074,9 +1124,7 @@ $("allSearch").addEventListener(
 );
 
 
-// ============================================
-// MENU PARA CELULAR
-// ============================================
+/* MENU PARA CELULAR */
 
 $("menuToggle").addEventListener("click", () => {
 
@@ -1085,9 +1133,7 @@ $("menuToggle").addEventListener("click", () => {
 });
 
 
-// ============================================
-// NOTIFICAÇÕES
-// ============================================
+/* NOTIFICAÇÕES */
 
 let toastTimer;
 
@@ -1110,9 +1156,7 @@ function toast(message) {
 }
 
 
-// ============================================
-// BOTÃO VOLTAR DO NAVEGADOR
-// ============================================
+/* BOTÃO VOLTAR DO NAVEGADOR */
 
 window.addEventListener("popstate", event => {
 
@@ -1157,6 +1201,16 @@ window.addEventListener("popstate", event => {
 
     }
 
+    if (state?.view === "registration") {
+
+        hideViews();
+
+        $("registrationView").hidden = false;
+
+        return;
+
+    }
+
     hideViews();
 
     $("homeView").hidden = false;
@@ -1166,13 +1220,17 @@ window.addEventListener("popstate", event => {
 });
 
 
-// ============================================
-// INICIALIZAÇÃO DO SITE
-// ============================================
+/* INICIALIZAÇÃO */
 
 document.addEventListener("DOMContentLoaded", () => {
 
     renderHome();
+
+    history.replaceState(
+        { view: "home" },
+        "",
+        "#inicio"
+    );
 
     console.log("Trampô iniciado com sucesso!");
 
